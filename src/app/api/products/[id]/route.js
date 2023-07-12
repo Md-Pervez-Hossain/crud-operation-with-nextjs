@@ -4,8 +4,7 @@ import products from "../../../../../models/productsSchama";
 
 export async function PUT(request, { params }) {
   const { id } = params;
-  const { updatedTitle: title, updatedDescription: description } =
-    await request.json();
+  const { newTitle: title, newDescription: description } = await request.json();
   await connectMongoDb();
   await products.findByIdAndUpdate(id, { title, description });
   return NextResponse.json({ message: "Product Update" }, { status: "201" });
